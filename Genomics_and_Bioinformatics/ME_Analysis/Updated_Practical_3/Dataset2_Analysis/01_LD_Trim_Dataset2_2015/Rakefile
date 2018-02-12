@@ -1,0 +1,36 @@
+#!/usr/local/bin/ruby
+
+
+POP = "../../Data/ME_popinfo.txt"
+PLINK = "../../Data/Dataset2/ME_Dataset2"
+PERCENT = 0.1
+RESULTS = "results"
+SCRIPTS = "scripts"
+
+
+
+# directory tasks
+
+directory RESULTS
+
+# processing tasks
+
+PRUNED = "ME_Dataset2_LDpruned_#{PERCENT}"
+
+task :ldprune => [RESULTS] do
+	sh "./#{SCRIPTS}/LDprune.pl #{PLINK} #{PRUNED} #{PERCENT}"
+	sh "mv #{PRUNED}* #{RESULTS}"
+end
+
+
+
+
+#cleaning tasks
+
+task :clobber => [RESULTS] do
+	sh "rm -r #{RESULTS}"
+end
+
+# default
+
+task :default => [:ldprune]

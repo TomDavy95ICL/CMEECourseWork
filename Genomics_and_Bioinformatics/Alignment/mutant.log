@@ -1,0 +1,16 @@
+skewer v0.2.2 [April 4, 2016]
+COMMAND LINE:	skewer -m pe -q 30 -Q 35 -l 75 -zo mutant mutant_R1.fastq.gz mutant_R2.fastq.gz
+Input file:	mutant
+Paired file:	mutant_R1.fastq.gz
+trimmed:	mutant-pair1.fastq.gz, mutant-pair2.fastq.gz
+
+Parameters used:
+-- 3' end adapter sequence (-x):	AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
+-- paired 3' end adapter sequence (-y):	AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA
+-- maximum error ratio allowed (-r):	0.100
+-- maximum indel error ratio allowed (-d):	0.030
+-- mean quality threshold (-Q):		35
+-- end quality threshold (-q):		30
+-- minimum read length allowed after trimming (-l):	75
+-- file format (-f):		Unknown format (auto detected)
+Fri Nov 10 16:03:12 2017 >> started

@@ -1,0 +1,55 @@
+Starting weekly assessment for Tom, Week7
+
+Current Marks = 100
+
+Note that: 
+(1) Major sections begin with a double "====" line 
+(2) Subsections begin with a single "====" line 
+(3) Code output or text file content are printed within single "*****" lines 
+
+======================================================================
+======================================================================
+Your Git repo size this week is about 99.92 MiB on disk 
+
+PART 1: Checking project workflow...
+
+Found the following directories in parent directory: Week3, Week1, Week2, .git, Assessment
+
+Found the following files in parent directory: Guidebook_2017_Silwood.pdf, CMEEGuidebook.pdf, .gitignore, README.txt
+
+Checking for key files in parent directory...
+
+Found .gitignore in parent directory, great! 
+
+Printing contents of .gitignore:
+**********************************************************************
+*~ 
+*.tmp
+**********************************************************************
+
+Found README in parent directory, named: README.txt
+
+Printing contents of README.txt:
+**********************************************************************
+My CMEE 2017-2018 Coursework Repository
+**********************************************************************
+
+======================================================================
+Looking for the weekly directories...
+
+Found 3 weekly directories: Week1, Week2, Week3
+
+The Week7 directory will be assessed 
+
+======================================================================
+======================================================================
+PART 2: Checking weekly code and workflow...
+
+======================================================================
+======================================================================
+
+FINISHED WEEKLY ASSESSMENT
+
+Current Marks for the Week = 100
+
+NOTE THAT THESE ARE NOT THE FINAL MARKS FOR THE WEEK, BUT AN UPPER BOUND ON THE MARKS!

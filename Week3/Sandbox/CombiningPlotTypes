@@ -1,0 +1,8 @@
+> par(fig=c(0,0.8,0,0.8)) # specify figure size as proportion
+> plot(log(MyDF$Predator.mass),log(MyDF$Prey.mass),
+	xlab = "Predator Mass (kg)", ylab = "Prey Mass (kg)") # Add labels
+> par(fig=c(0,0.8,0.55,1), new=TRUE)
+> boxplot(log(MyDF$Predator.mass), horizontal=TRUE, axes=FALSE)
+> par(fig=c(0.65,1,0,0.8),new=TRUE)
+> boxplot(log(MyDF$Prey.mass), axes=FALSE)
+> mtext("Fancy Predator-prey scatterplot", side=3, outer=TRUE, line=-3)

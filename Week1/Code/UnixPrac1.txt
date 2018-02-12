@@ -1,0 +1,26 @@
+#1 wc -l ~/CMEECourseWork/Week1/Data/fasta/*.fasta
+
+## A simple wc with argument -l counts lines of files. Importantly, as all fasta files are required to have their line counts evaluated, we use "*.fasta" to call for all files with the .fasta filetype in the Data folder.
+#Herein this document I've specified file paths fully (i.e. ~/CMEE../../....). If purely working in Code directory (which may be preferable depending on wanting an environment to output program logs) this could be substituted with '../Data/*.fasta'. 
+
+
+#2 tail -n +2  ~/CMEECourseWork/Week1/Data/fasta/E.coli.fasta 
+
+##tail calls for the 'tail fo the file, with -n +2 denoting which line to start calling from (herein the 2nd, where the first line in basic fasta files is used for basic metadata)
+
+#3 tail -n +2  ~/CMEECourseWork/Week1/Data/fasta/E.coli.fasta | grep -o '[A|T|G|C]' | wc -l 
+
+## Reusing the preamble of previous line, a pipeline ("|") is inserted to forward the output of tail into grep. "-o" designates that the pattern search is output into one character lines, while "'[A|T|G|C]'" searches independently for each nucleotide base. ***THIS ONLY WORKS IN A BASIC FASTA FILE*** Typesetting of fastq. files aside, symbols denoting questionable sequence (such as x, or lower case nucleotide letters) will be missed. The latter point is amendable with the grep argument "-i", i.e. case "i"nsensitivity (or choose your designatory i as you please). A final pipe into wc (word count) with argument -l (line) counts the number of lines output. Grep'ing (sic) in this way avoids issues with newline characters through specific searching for those alphanumeric characters. A solution could be to perform a bc mathematic pipeline invoving a second grep, this time with argument -v (or -vi preferably) [A|T|G|C] which would only present non-matching characters and could be used to calculate a non-standard base character % in the fasta. A step towards error/high-coverage calculations!
+
+#4 tail -n +2 ~/CMEECourseWork/Week1/Data/fasta/E.coli.fasta | grep -o ATGC | wc -l
+
+## With tail calling the genomic sequence to ensure no matched with metadata (though this would not happen in this specific instance) a grep is performed, without square brackets, for ATGC. -o again prints as single match lines, with wc -l counting this. 
+#Importantly, this pattern searching method does not discriminate between "ATGC" and "ATGCATGC", which may be important dependend on analysis. 26 instances of ATGCATGC exist in this genome. An inefficient work around involving using "bc" for ad-hoc mathematics to subtract this, should it not be deemed relevant, could be applied (See #5 for more on bc). 
+#A flexible long-term solution could be provided with higher order programming languages (not to bash BASH, that is).
+#
+
+
+#5 bc -l <<< $(tail -n +2 ~/CMEECourseWork/Week1/Data/fasta/E.coli.fasta | grep -o '[A|T]' | wc -l) / $(tail -n +2 ~/CMEECourseWork/Week1/Data/fasta/E.coli.fasta | grep -o '[G|C]' | wc -l)
+
+## Two seperate grep commands are bracketed with a preceding $ and a interstitial /. These are then fed into the command line tool bc (Merely adding " |bc" at the end will not invoke the program, and instead the output of the pipeline will look likie "x / y". The $ values specify a value for calculation, and / specifies division, in bc. Without bc argument -l, the output string is "0", due to the preference of bash/bc not to perform ~floating point arithmetic~. So we can force this by using -l!
+

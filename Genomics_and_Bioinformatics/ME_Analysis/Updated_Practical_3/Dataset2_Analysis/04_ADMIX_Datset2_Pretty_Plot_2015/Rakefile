@@ -1,0 +1,53 @@
+#!/usr/local/bin/ruby
+
+############################################################
+#  Rakefile for 04_ADMIX_Dataset2_Pretty_Plot_08-2014      #
+############################################################
+
+
+SCRIPTS = "scripts"
+RESULTS = "results"
+
+K = 3 # change this value to plot a differnt value of K
+
+POP = "ordered_popdata.csv"
+DATA = "../03_ADMIXTURE_Dataset2_2015/results/plots/ME_Dataset2_LDpruned_0.1.#{K}.Rtable"
+
+
+# directory tasks
+
+directory RESULTS
+
+# processing tasks
+
+###############################################
+
+CSV = "Dataset2.csv"
+INFILE = "#{RESULTS}/#{CSV}"
+
+file INFILE => [RESULTS] do |t|
+	sh "./#{SCRIPTS}/plotcsv.pl #{DATA} #{CSV}"
+	sh "mv #{CSV} #{t.name}"
+end
+################################################
+
+PLOT = "Dataset3_plot.pdf"
+FINAL = "#{RESULTS}/#{PLOT}"
+
+file FINAL => [INFILE] do |t|
+	sh "./#{SCRIPTS}/structure_plots.R #{INFILE} #{POP} #{PLOT}"
+	sh "mv #{PLOT} #{t.name}"
+end
+
+
+# cleaning tasks
+
+task :clobber => [RESULTS] do
+	sh "rm -r #{RESULTS}"
+end
+
+# default
+
+task :default => [INFILE, FINAL]
+
+

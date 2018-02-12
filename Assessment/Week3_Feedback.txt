@@ -1,0 +1,917 @@
+Starting weekly assessment for Tom, Week3
+
+Current Marks = 100
+
+Note that: 
+(1) Major sections begin with a double "====" line 
+(2) Subsections begin with a single "====" line 
+(3) Code output or text file content are printed within single "*****" lines 
+
+======================================================================
+======================================================================
+Your Git repo size this week is about 99.92 MiB on disk 
+
+PART 1: Checking project workflow...
+
+Found the following directories in parent directory: Week1, Assessment, Week2, .git, Week3
+
+Found the following files in parent directory: README.txt, CMEEGuidebook.pdf, .gitignore, Guidebook_2017_Silwood.pdf
+
+Checking for key files in parent directory...
+
+Found .gitignore in parent directory, great! 
+
+Printing contents of .gitignore:
+**********************************************************************
+*~ 
+*.tmp
+**********************************************************************
+
+Found README in parent directory, named: README.txt
+
+Printing contents of README.txt:
+**********************************************************************
+My CMEE 2017-2018 Coursework Repository
+**********************************************************************
+
+======================================================================
+Looking for the weekly directories...
+
+Found 3 weekly directories: Week1, Week2, Week3
+
+The Week3 directory will be assessed 
+
+======================================================================
+======================================================================
+PART 2: Checking weekly code and workflow...
+
+======================================================================
+Assessing WEEK3...
+
+Found the following directories: Code, Data, Results
+
+Found the following files: TreesPractical.instruct
+
+Checking for readme file in weekly directory...
+
+README file missing, 1 pt deducted
+
+Current Marks = 99
+
+Found 18 code files: apply1.R, sample.R, control.r, LV2_Instruct.txt, boilerplate.R, TreeHeight.R, LV1.py, next.R, Ricker.R, Vectorize1.R, Vectorize20.R, break.R, basic_io.R, try.R, apply2.R, LV2.py, browser.R, Vectorize2.R
+
+Found the following extra files: Rplots.pdf, .Rhistory, prey_and_predators_1.pdf
+0.5 pt deducted per extra file
+
+Current Marks = 97.5
+
+======================================================================
+Testing script/code files...
+
+======================================================================
+Inspecting script file apply1.R...
+
+File contents are:
+**********************************************************************
+## apply: applyingthe same function to rows/columns of a matrix
+
+# Build a random matrix
+
+M <- matrix(rnorm(100), 10, 10)
+
+## Take the mean of each row
+RowMeans <- apply(M, 1, mean)
+print (RowMeans)
+
+## Variance
+RowVars <- apply(M, 1, var)
+print (RowVars)
+
+## By Column
+ColMeans <- apply(M, 2, mean)
+print (ColMeans)
+
+**********************************************************************
+
+Testing apply1.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+ [1]  0.77241195 -0.11511077 -0.56051176 -0.35795370 -0.05901984 -0.24221777
+ [7]  0.89233429  0.51536042  0.36584209  0.25885943
+ [1] 1.3478897 1.2773392 0.8860580 0.5565515 0.5386431 1.0022936 1.1177482
+ [8] 1.1379066 0.6091106 0.6433030
+ [1]  0.30391923  0.05624859  0.35313531  0.13972899 -0.40036986  0.11597396
+ [7]  0.26156793  0.30750911  0.25374735  0.07853374
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.11021s
+
+======================================================================
+Inspecting script file sample.R...
+
+File contents are:
+**********************************************************************
+## run a simulation that involves sampling from a population
+
+x <- rnorm(50) #Generate your population
+doit <- function(x){
+	x <- sample(x, replace = TRUE)
+	if(length(unique(x)) > 30) { #only take mean if sample was sufficient
+		print(paste("Mean of this sample was:", as.character(mean(x))))
+		}
+}
+	
+## Run 100 iterations using vectorization:
+result <- lapply(1:100, function(i) doit(x))
+
+## Or using a for loop:
+result <- vector("list", 100) #Preallocate/Initialize
+for(i in 1:100) {
+	result[[i]] <- doit(x)
+}
+**********************************************************************
+
+Testing sample.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+[1] "Mean of this sample was: -0.0787115117315651"
+[1] "Mean of this sample was: -0.071796747520199"
+[1] "Mean of this sample was: -0.0246350896127926"
+[1] "Mean of this sample was: -0.218843266422897"
+[1] "Mean of this sample was: -0.22254351020767"
+[1] "Mean of this sample was: -0.0595755513170169"
+[1] "Mean of this sample was: 0.154467747172999"
+[1] "Mean of this sample was: -0.0162566694695289"
+[1] "Mean of this sample was: 0.157226210530643"
+[1] "Mean of this sample was: -0.084500235020819"
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.07470s
+
+======================================================================
+Inspecting script file control.r...
+
+File contents are:
+**********************************************************************
+## If statement
+a <- T
+if (a == T) {
+	print ("a is TRUE")
+	} else {
+	print ("a is FALSE")
+}
+**********************************************************************
+
+Testing control.r...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+[1] "a is TRUE"
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.06803s
+
+======================================================================
+Inspecting script file LV2_Instruct.txt...
+
+File contents are:
+**********************************************************************
+#1 Take arguments for the four LV model parameter r,a,z,e from command line
+#2 Runs the Lotka-Volterra model with prey density dependence rR(1-(R/K)
+#3 Saves the plot as pdf in an external results directory in your weekly directory
+#4 The chosen parameter values should show in the plit (e.g, r=1, a =.5 etc.) You can change time length t too.
+#5 Include a script called run_LV.py in Code that will run both LV1.py and LV2.py with appropriate arguments. This script should also profile the two scripts and print the results to  screen for each of the scripts using the %run -p approach. Look at and compare speed bottlenecks in LV1.py and LV2.py. Think about how you could further speed up the scripts
+####
+# Extra Credit
+####
+#6 If you also choose appropriate values for the parameters such that both predator and prey persist with prey density dependence - the final non-zero) population values should be printed to screen. write every extra credit script with a new name i.e. LV3,py.,LV4.py.
+##~~##
+# Extra Extra Credit
+##~~##
+#7 Write a discrete-time version of the LV model called LV3.py. The discrete time model is: [see Silbiocomp.pdf]. Include this script in run_LV.py and profile it as well.
+#~#~#~#~#
+## Extra Extra Extra Credit
+#~#~#~#~#
+#8 Write a version of the discrete-time model (eqn 6.3) simulation with random gaussian fluctuation in resource's growth rate at each time-step
+# glhf
+**********************************************************************
+
+Testing LV2_Instruct.txt...
+
+======================================================================
+Inspecting script file boilerplate.R...
+
+File contents are:
+**********************************************************************
+MyFunction <- function(Arg1, Arg2){
+		
+	#Statements involving Arg1, Arg2:
+	print(paste("Argument", as.character(Arg1), "is a ", class(Arg1))) # print Arg1's type
+	print(paste("Argument", as.character(Arg2), "is a ", class(Arg2))) # print Arg2's type
+	
+	return (c(Arg1, Arg2)) # Optional Concatenation
+	
+}
+
+MyFunction(1,2) #Test
+MyFunction("Riki","Tiki")#Test2
+**********************************************************************
+
+Testing boilerplate.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+[1] "Argument 1 is a  numeric"
+[1] "Argument 2 is a  numeric"
+[1] 1 2
+[1] "Argument Riki is a  character"
+[1] "Argument Tiki is a  character"
+[1] "Riki" "Tiki"
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.06814s
+
+======================================================================
+Inspecting script file TreeHeight.R...
+
+File contents are:
+**********************************************************************
+#This function calculates heights of trees from the angle of elevation
+# and the distance from the base using the trigonometric
+# formula height = distance * tan(radians)
+#
+# ARGUMENTS:
+# degrees 		The angle of elevation
+# distance 		The distance from base
+#
+# OUTPUT:
+# The height of the tree, same units as "distance"
+
+
+# Requires RScript approach
+# i.e. "Rscript $" runs script from bash
+# "Rscript myscript.py $input1 $input2" etc.
+
+
+TreeHeight <- function(degrees, distance){
+	radians <- degrees * pi / 180
+	height <- distance * tan(radians)
+	print(paste("Tree height is:", height, "metre(s)"))
+	
+	return (height)
+}
+
+MyTreeData <- read.csv("Data/trees.csv")
+
+TreeHeight(MyTreeData) -> MyTreeHeights
+
+write.csv(MyTreeHeights, "Code/TreeHts.csv")
+
+**********************************************************************
+
+Testing TreeHeight.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error:
+Error in file(file, "rt") : cannot open the connection
+Calls: read.csv -> read.table -> file
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file 'Data/trees.csv': No such file or directory
+Execution halted
+
+======================================================================
+Inspecting script file LV1.py...
+
+File contents are:
+**********************************************************************
+""" The typical Lotka-Volterra Model simulated using scipy """
+
+import scipy as sc 
+import scipy.integrate as integrate
+import pylab as p #Contains matplotlib for plotting
+
+# import matplotlip.pylab as p #Some people might need to do this
+
+def dR_dt(pops, t=0):
+    """ Returns the growth rate of predator and prey populations at any 
+    given time step """
+    
+    R = pops[0]
+    C = pops[1]
+    dRdt = r*R - a*R*C 
+    dydt = -z*C + e*a*R*C
+    
+    return sc.array([dRdt, dydt])
+
+# Define parameters:
+r = 1. # Resource growth rate
+a = 0.1 # Consumer search rate (determines consumption rate) 
+z = 1.5 # Consumer mortality rate
+e = 0.75 # Consumer production efficiency
+
+# Now define time -- integrate from 0 to 15, using 1000 points:
+t = sc.linspace(0, 15,  1000)
+
+x0 = 10
+y0 = 5 
+z0 = sc.array([x0, y0]) # initials conditions: 10 prey and 5 predators per unit area
+
+pops, infodict = integrate.odeint(dR_dt, z0, t, full_output=True)
+
+infodict['message']     # >>> 'Integration successful.'
+
+prey, predators = pops.T # What's this for?
+f1 = p.figure() #Open empty figure object
+p.plot(t, prey, 'g-', label='Resource density') # Plot
+p.plot(t, predators  , 'b-', label='Consumer density')
+p.grid()
+p.legend(loc='best')
+p.xlabel('Time')
+p.ylabel('Population')
+p.title('Consumer-Resource population dynamics')
+p.show()
+f1.savefig('prey_and_predators_1.pdf') #Save figure
+**********************************************************************
+
+Testing LV1.py...
+
+LV1.py is a Python script file;
+ checking for docstrings...
+
+Found one or more doctrings!
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 10.01258s
+
+======================================================================
+Inspecting script file next.R...
+
+File contents are:
+**********************************************************************
+for (i in 1:10) {
+  if ((i %% 2) == 0)
+    next # pass to next iteration of loop
+  print(i)
+}**********************************************************************
+
+Testing next.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+[1] 1
+[1] 3
+[1] 5
+[1] 7
+[1] 9
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.07596s
+
+======================================================================
+Inspecting script file Ricker.R...
+
+File contents are:
+**********************************************************************
+Ricker <- function(N0=1, r=1, K=10, generations=50)
+{
+# Runs a simulation of the ricker model
+# Returns a vector of length generations
+	N <- rep(NA, generations)
+# Creates a vector of NA
+	N[1] <- N0
+	for (t in 2:generations)
+	{
+		N[t] <- N[t-1] * exp(r*(1.0-(N[t-1]/K)))
+	}
+	return (N)
+}
+plot(Ricker(generations=15), type="l")
+**********************************************************************
+
+Testing Ricker.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.11525s
+
+======================================================================
+Inspecting script file Vectorize1.R...
+
+File contents are:
+**********************************************************************
+M <- matrix(runif(1000000),1000,1000)
+
+SumAllElements <- function(M){
+	Dimensions <- dim(M)
+	Tot <- 0
+	for (i in 1:Dimensions[1]){
+		for (j in 1:Dimensions[2]){
+			Tot <- Tot + M[i,j]
+		}
+	}
+	return (Tot)
+}
+		
+print(system.time(SumAllElements(M)))
+      
+print(system.time(sum(M)))
+		
+**********************************************************************
+
+Testing Vectorize1.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+   user  system elapsed 
+  0.436   0.000   0.435 
+   user  system elapsed 
+  0.000   0.000   0.001 
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.59722s
+
+======================================================================
+Inspecting script file Vectorize20.R...
+
+File contents are:
+**********************************************************************
+# Runs the stochastic (with gaussian fluctuations) Ricker Eqn .
+
+rm(list=ls())
+
+stochrick<-function(p0=runif(1000,.5,1.5),r=2,K=1,sigma=0.2,numyears=100)
+{
+  #initialize
+  N<-matrix(NA,numyears,length(p0))
+  N[1,]<-p0
+  
+  for (yr in 2:numyears) #for each pop, loop through the years
+    {
+      N[yr,]<-N[yr-1,]*exp(r*(1-N[yr-1,]/K)+rnorm(length(p0),0,sigma))
+    }
+  return(N)
+}
+plot(stochrick(numyears=100), type="l")
+# Now write another code called stochrickvect that vectorizes the above 
+# to the extent possible, with improved performance: 
+
+print("Vectorized Stochastic Ricker takes:")
+print(system.time(res2<-stochrickvect()))
+
+
+#func = input of vector
+#apply seperately
+**********************************************************************
+
+Testing Vectorize20.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+[1] "Vectorized Stochastic Ricker takes:"
+Timing stopped at: 0 0 0 
+
+**********************************************************************
+
+Encountered error:
+Error in system.time(res2 <- stochrickvect()) : 
+  could not find function "stochrickvect"
+Calls: print -> system.time
+Execution halted
+
+======================================================================
+Inspecting script file break.R...
+
+File contents are:
+**********************************************************************
+i <- 0 #initialize i
+  while (i < Inf) {
+    if (i == 20) {
+      break }
+    else {
+      cat("i equals ", i, " \n")
+      i <- i + 1 #update i
+    }
+  }**********************************************************************
+
+Testing break.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+i equals  0  
+i equals  1  
+i equals  2  
+i equals  3  
+i equals  4  
+i equals  5  
+i equals  6  
+i equals  7  
+i equals  8  
+i equals  9  
+i equals  10  
+i equals  11  
+i equals  12  
+i equals  13  
+i equals  14  
+i equals  15  
+i equals  16  
+i equals  17  
+i equals  18  
+i equals  19  
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.06884s
+
+======================================================================
+Inspecting script file basic_io.R...
+
+File contents are:
+**********************************************************************
+#A simple R script to illustrate R input-output.
+# Run line by line and check inputs outputs to understand what is 
+# happening
+
+MyData <- read.csv("../Data/trees.csv", header = TRUE) #import with headers
+
+write.csv(MyData, "../Results/MyData.csv") #write it out as a new file
+
+write.table(MyData[1,], file = "../Results/MyData.csv",append=TRUE) # Append to it
+
+write.csv(MyData, "../Results/MyData.csv", row.names=TRUE) # write row names
+
+write.table(MyData, "../Results/MyData.csv", col.names=FALSE) # ignore column names
+**********************************************************************
+
+Testing basic_io.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error:
+Warning message:
+In write.table(MyData[1, ], file = "../Results/MyData.csv", append = TRUE) :
+  appending column names to file
+
+======================================================================
+Inspecting script file try.R...
+
+File contents are:
+**********************************************************************
+## run a simulation that involves sampling from a population
+
+x <- rnorm(50) #Generate your population
+doit <- function(x){
+  x <- sample(x, replace = TRUE)
+  if(length(unique(x)) > 30) {#only take mean if sample was sufficient
+    print(paste("Mean of this sample was:", as.character(mean(x))))
+  }
+  else {
+    stop("Couldn't calculate mean: too few unique points!")
+  }
+}
+## Try using "try" with vectorization:
+result <- lapply(1:100, function(i) try(doit(x), FALSE))
+
+## Or using a for loop:
+result <- vector("list", 100) #Preallocate/Initialize
+for(i in 1:100) {
+  result[[i]] <- try(doit(x), FALSE)
+}**********************************************************************
+
+Testing try.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+[1] "Mean of this sample was: 0.201959858746943"
+[1] "Mean of this sample was: 0.00102295226373167"
+[1] "Mean of this sample was: 0.157583904110808"
+[1] "Mean of this sample was: -0.0403869612979755"
+[1] "Mean of this sample was: 0.221706639575453"
+[1] "Mean of this sample was: -0.1553504337876"
+[1] "Mean of this sample was: -0.0612429304308395"
+[1] "Mean of this sample was: 0.111770653839516"
+[1] "Mean of this sample was: 0.135132476666295"
+[1] "Mean of this sample was: -0.13398141483145"
+[1] "M
+**********************************************************************
+
+Encountered error:
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+Error in doit(x) : Couldn't calculate mean: too few unique points!
+
+======================================================================
+Inspecting script file apply2.R...
+
+File contents are:
+**********************************************************************
+SomeOperation <- function(v) {
+  if (sum(v) >0){
+    return (v * 100)
+  }
+  return (v)
+}
+M <- matrix(rnorm(100), 10, 10)
+print (apply(M, 1, SomeOperation))
+**********************************************************************
+
+Testing apply2.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+              [,1]        [,2]       [,3]      [,4]       [,5]        [,6]
+ [1,] -0.071374592  0.74899886 -1.7629714 131.64382   51.53300  0.45778688
+ [2,]  1.290620392 -1.02415452  0.6539789  94.63873  -16.45346 -1.42915707
+ [3,] -0.594475588  0.18400977 -1.5428775  27.67621   43.34286  0.66892552
+ [4,]  0.075549941 -1.68234116  0.2582922  47.90061   36.99730 -0.75146260
+ [5,] -0.183227963  0.43886653  0.6345252 292.24302 -138.10236  1.10230006
+ [6,] -0.584984667  0.04200456 -0.5233136  33.57533
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.07145s
+
+======================================================================
+Inspecting script file LV2.py...
+
+File contents are:
+**********************************************************************
+""" The typical Lotka-Volterra Model simulated using scipy """
+
+import scipy as sc 
+import scipy.integrate as integrate
+import pylab as p #Contains matplotlib for plotting
+
+# import matplotlip.pylab as p #Some people might need to do this
+
+def dR_dt(pops, t=0):
+    """ Returns the growth rate of predator and prey populations at any 
+    given time step """
+    
+    R = pops[0]
+    C = pops[1]
+    dRdt = r*R - a*R*C 
+    dydt = -z*C + e*a*R*C
+    
+    return sc.array([dRdt, dydt])
+
+# Define parameters:
+r = 1. # Resource growth rate
+a = 0.1 # Consumer search rate (determines consumption rate) 
+z = 1.5 # Consumer mortality rate
+e = 0.75 # Consumer production efficiency
+
+# Now define time -- integrate from 0 to 15, using 1000 points:
+t = sc.linspace(0, 15,  1000)
+
+x0 = 10
+y0 = 5 
+z0 = sc.array([x0, y0]) # initials conditions: 10 prey and 5 predators per unit area
+
+pops, infodict = integrate.odeint(dR_dt, z0, t, full_output=True)
+
+infodict['message']     # >>> 'Integration successful.'
+
+prey, predators = pops.T # What's this for?
+f1 = p.figure() #Open empty figure object
+p.plot(t, prey, 'g-', label='Resource density') # Plot
+p.plot(t, predators  , 'b-', label='Consumer density')
+p.grid()
+p.legend(loc='best')
+p.xlabel('Time')
+p.ylabel('Population')
+p.title('Consumer-Resource population dynamics')
+p.show()
+f1.savefig('prey_and_predators_1.pdf') #Save figure
+**********************************************************************
+
+Testing LV2.py...
+
+LV2.py is a Python script file;
+ checking for docstrings...
+
+Found one or more doctrings!
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 10.01334s
+
+======================================================================
+Inspecting script file browser.R...
+
+File contents are:
+**********************************************************************
+Exponential <- function(N0 = 1, r = 1, generations = 10){
+  #Runs a simulation of exponential growth
+  #Returns a vector of length generations
+  
+  N <- rep(NA, generations) # Creates a vector of NA
+  
+  N[1] <- N0
+  for (t in 2:generations){
+    N[t] <- N[t-1] * exp(r)
+      browser()
+  }
+  return (N)
+}
+plot(Exponential(), type="l", main="Exponential growth")**********************************************************************
+
+Testing browser.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Called from: Exponential()
+debug: N[t] <- N[t - 1] * exp(r)
+debug: browser()
+debug: N[t] <- N[t - 1] * exp(r)
+debug: browser()
+debug: N[t] <- N[t - 1] * exp(r)
+debug: browser()
+debug: N[t] <- N[t - 1] * exp(r)
+debug: browser()
+debug: N[t] <- N[t - 1] * exp(r)
+debug: browser()
+debug: N[t] <- N[t - 1] * exp(r)
+debug: browser()
+debug: N[t] <- N[t - 1] * exp(r)
+debug: browser()
+debug: N[t] <- N[t - 1] * exp(r)
+debug: browser()
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.14860s
+
+======================================================================
+Inspecting script file Vectorize2.R...
+
+File contents are:
+**********************************************************************
+# Runs the stochastic (with gaussian fluctuations) Ricker Eqn .
+
+rm(list=ls())
+
+stochrickvect<-function(p0=runif(1000,.5,1.5),r=2,K=1,sigma=0.2,numyears=100)
+{
+  #initialize
+  N<-matrix(NA,numyears,length(p0))
+  N[1,]<-p0
+  
+  for (yr in 2:numyears) #for each pop, loop through the years
+    {
+      N[yr,]<-N[yr-1,]*exp(r*(1-N[yr-1,]/K)+rnorm(length(p0),0,sigma))
+    }
+  return(N)
+}
+plot(stochrickvect(numyears=100), type="l")
+# Now write another code called stochrickvect that vectorizes the above 
+# to the extent possible, with improved performance: 
+
+print("Vectorized Stochastic Ricker takes:")
+print(system.time(res2<-stochrickvect()))
+
+
+#func = input of vector
+#apply seperately
+**********************************************************************
+
+Testing Vectorize2.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+[1] "Vectorized Stochastic Ricker takes:"
+   user  system elapsed 
+  0.012   0.000   0.014 
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.17457s
+
+======================================================================
+======================================================================
+Finished running scripts
+
+Ran into 4 errors
+
+======================================================================
+======================================================================
+
+FINISHED WEEKLY ASSESSMENT
+
+Current Marks for the Week = 97.5
+
+NOTE THAT THESE ARE NOT THE FINAL MARKS FOR THE WEEK, BUT AN UPPER BOUND ON THE MARKS!

@@ -1,0 +1,88 @@
+To Do::
+
+7.1.4:
+	DONE~~~#1# Modify the script TreeHeight.R to do the following:
+		a~ Loads trees.csv and calculates tree heights for all trees in the data. Distances = meters.
+		
+		b~ Creates a csv output called TreeHts.csv in Results that contains the calculated tree heights w/ original data in the following format:  "Species // Distance.m // Angle.degrees // Tree.height.m//." Work via source or Rscript.
+
+
+	#2# Make the TreeHeight.R script more general so that it could be used for other datasets:
+		
+		DONE~@~ a~ Write another script called get_TreeHeight.R that takes a csv file name from command line (e.g. get_TreeHeight.R Trees.csv) and outputs the result to a file just like TreeHeight.R above, but this time included the input file name in the output file name as InputFileName_treeheights.csv. Note that you will have to strip the .csv. ## Hint: Command-line parameters are accessible within the R running env via commandArgs() so help(commandArgs) may be a starting point
+
+		b~ Write a unix shell script called run_get_TreeHeight.sh that tests get_TreeHeight.R - include trees.csv as example file. Note that source will not work in this case as it does not allow scripts with arguments to be run: Use Rscript!!!!
+
+	#EC~1# Write a python version of get_TreeHeight.R (get_TreeHeight.py). Include test of this script into run_get_TreeHeight.sh.
+
+
+=#=#=#=#=#=#=#
+
+8.3.1:
+
+	#1# Complete Vectorize 2 Practical according to speed.
+	#EC# Impelement python versions of Vect1 and Vect2. Then write a bash script that compares speed of all 4 scripts.
+
+
+8.8.1:
+	1. Autocorrelation in weather
+	
+	a) Make a new script called TAutoCorr.R in Code
+	b) Load & Examines and Plots KeyWestAnnual.....re.Rdata using (load)
+	c) Hypths: Is the temperature of one year significantly correlated with the next year, across the years. That is calculate the correlation between n - 1 pairs of years, where n is the total number of years. However, canno tuse standard p-value calculated for a correlation coerficient using R's cor() function because measurements of climatic vars in succ time-points in time series. Successive secs, mins, hours and NOT INDPENDANT.
+	
+	HENCE
+		~ Compute the appro. corr. coeff. b/w successive years and store it
+		~ Perform calculation 10000 times by:
+			# randomly permuting the time series (use sample function)
+		~ The computing the corr coeff for each randomly permuated year seq nd storing it.
+
+T	d) Then calc what fraction of the corr coeffs from step 2 were greater than that from step 1 (this is your appx. p-value)
+
+	e) How do you interpret? why? present in a pdf written in LaTeX document (inc. source code).
+
+	
+	EC:
+	Mapping with maps package
+
+	a) use load from GPDDFiltered.RData
+	Need lat & long info for a bunch of species for which pop time series are available.
+
+	use ggplot2: create a script that
+			1) Loads maps
+			2) loads GPDD
+			3) Creates a world map
+			4) Superimposes on the map all the locations from which we have data in the GPDD dataframe
+			5) What biases might you expect in any analysis on data? Include answer in comment at end of R script.
+
+#######################
+##################
+###############
+###########
+#######
+###
+#
+##########################
+#######################
+##################
+###############
+###########
+#######
+###
+#
+Review and make sure you can run all the commands, code fragments, and named scripts
+we have built till now and get the expected outputs.
+2. Annotate/comment your code lines as much and as often as necessary using #.
+3. Keep all code, data and results files organized in the Week3/ directory
+git add, commit and push all your code and data from this chapter to your git repository by
+Wednesday, Nov 2, 5PM.
+
+
+
+
+
+
+
+
+	
+	

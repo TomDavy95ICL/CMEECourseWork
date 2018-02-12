@@ -1,0 +1,40 @@
+﻿8) The systems coalesces towards monoculture / a lack of diversity as t -> Inf, though it doesn't take too long to reach this state. This is because with each replacement in the system, there is an increasing chance that the larger species will replace another index in the community, under completely neutral / relaxed assumptions. The lack of diversification / new species as a secondary process to erode such monoculture also contributes to this.
+
+
+
+
+
+
+12) In this simulation, both a minimal and maximal diversity community quickly approach a shared discrete range of species richness values, and fluctuate to the same degree therein. This demonstrates the equilibrium of the system; lower richness promoting the generation of new species, and higher richness stifling these. With the same parametres both initial community vectors will end the same as the model simulates the same resources for each species regardless of starting vector, i.e. the same environment.
+
+
+
+
+16) The initial state of the system herein does not seem to matter. There is very little difference between either barcharts / octave bins. Similarly, the biodiversity holding capacity of each simulation is the same, so either states fall to an easier to maintain equilibrium, even in terms of speciation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+18)
+
+For the “2D” square: There is a resizing factor of 3, and there are 8 exact replicates of the pattern here. Hence log(8)/log(3) =~ 1.8927.
+
+In “3D”, the resizing factor is constant; the entire tessaract is n+1 dimensions but so is the starting singular unit, hence  3. If there were to be taken 3*3*3 = 27 original “cubes” that may exist within the dimensional confines, there is clearly 1 cube missing from each side of this cube, plus an additional missing cube in the center in accordance with the scaling of the fractal pattern. Hence log(9)/log(20) =~ 

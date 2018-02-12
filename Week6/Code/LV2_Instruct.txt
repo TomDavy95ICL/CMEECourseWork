@@ -1,0 +1,18 @@
+#1 Take arguments for the four LV model parameter r,a,z,e from command line
+#2 Runs the Lotka-Volterra model with prey density dependence rR(1-(R/K)
+#3 Saves the plot as pdf in an external results directory in your weekly directory
+#4 The chosen parameter values should show in the plit (e.g, r=1, a =.5 etc.) You can change time length t too.
+#5 Include a script called run_LV.py in Code that will run both LV1.py and LV2.py with appropriate arguments. This script should also profile the two scripts and print the results to  screen for each of the scripts using the %run -p approach. Look at and compare speed bottlenecks in LV1.py and LV2.py. Think about how you could further speed up the scripts
+####
+# Extra Credit
+####
+#6 If you also choose appropriate values for the parameters such that both predator and prey persist with prey density dependence - the final non-zero) population values should be printed to screen. write every extra credit script with a new name i.e. LV3,py.,LV4.py.
+##~~##
+# Extra Extra Credit
+##~~##
+#7 Write a discrete-time version of the LV model called LV3.py. The discrete time model is: [see Silbiocomp.pdf]. Include this script in run_LV.py and profile it as well.
+#~#~#~#~#
+## Extra Extra Extra Credit
+#~#~#~#~#
+#8 Write a version of the discrete-time model (eqn 6.3) simulation with random gaussian fluctuation in resource's growth rate at each time-step
+# glhf

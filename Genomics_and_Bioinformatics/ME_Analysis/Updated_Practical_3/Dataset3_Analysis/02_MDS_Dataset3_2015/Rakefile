@@ -1,0 +1,93 @@
+#!/usr/local/bin/ruby
+
+PLINK = "../01_LD_Trim_Dataset3_2015/results/ME_Dataset3_LDpruned_0.1"
+POP = "../../Data/ME_popinfo.txt"
+RESULTS = "results"
+SCRIPTS = "scripts"
+
+
+
+# directory tasks
+
+directory RESULTS
+
+
+
+# processing tasks
+
+
+
+# Perform IBD analysis
+
+PREFIX = "ME_Dataset3_LDpruned_0.1"
+
+task :ibs =>  [RESULTS] do
+	sh "plink --bfile #{PLINK} --noweb --geno 0.05 --mind 0.10 --maf 0.05 --genome"
+	sh "cp plink.genome #{PREFIX}.genome"
+	sh "rm plink.genome"
+	sh "rm plink.nosex"
+	sh "cp plink.log #{PREFIX}_ibs.log"
+	sh "rm plink.log"
+	sh "mv #{PREFIX}.genome #{RESULTS}"
+	sh "mv #{PREFIX}_ibs.log #{RESULTS}"
+end
+
+IBS = "#{RESULTS}/#{PREFIX}.genome"
+
+task :mds => [IBS] do
+	sh "plink --bfile #{PLINK} --noweb --geno 0.05 --mind 0.10 --maf 0.05 --read-genome #{IBS} --cluster --mds-plot 4"
+	sh "cp plink.cluster0 #{RESULTS}/#{PREFIX}.cluster0"
+	sh "rm plink.cluster0"
+	sh "cp plink.cluster1 #{RESULTS}/#{PREFIX}.cluster1"
+	sh "rm plink.cluster1"
+	sh "cp plink.cluster2 #{RESULTS}/#{PREFIX}.cluster2"
+	sh "rm plink.cluster2"
+	sh "cp plink.cluster3 #{RESULTS}/#{PREFIX}.cluster3"
+	sh "rm plink.cluster3"
+#	sh "cp plink.irem #{RESULTS}/#{PREFIX}.irem"
+#	sh "rm plink.irem"
+	sh "cp plink.log #{RESULTS}/#{PREFIX}_mds.log"
+	sh "rm plink.log"
+	sh "cp plink.mds #{RESULTS}/#{PREFIX}.mds"
+	sh "rm plink.mds"
+	sh "rm plink.nosex"
+	
+end
+
+MDS = "#{RESULTS}/#{PREFIX}.mds"
+
+task :mds2R => [MDS] do
+	sh "./#{SCRIPTS}/plinkMDS2R.pl #{MDS} #{POP} #{PREFIX}.Rtable"
+	sh "mv #{PREFIX}.Rtable #{RESULTS}"
+end
+
+RTABLE = "#{RESULTS}/#{PREFIX}.Rtable"
+
+
+task :plot => [RTABLE] do
+	sh "./#{SCRIPTS}/MDSPlot.R #{RTABLE} #{PREFIX}_MDS_Plot.pdf"
+	sh "mv plot1_#{PREFIX}_MDS_Plot.pdf #{RESULTS}"
+	#sh "mv plot2_#{PREFIX}_MDS_Plot.pdf #{PREFIX}"
+	#sh "mv plot3_#{PREFIX}_MDS_Plot.pdf #{PREFIX}"
+end
+
+
+# cleaning tasks
+
+task :clobber => [RESULTS] do
+	sh "rm -r #{RESULTS}"
+end
+
+# default
+
+
+task :default => [:ibs, :mds, :mds2R, :plot]
+
+
+
+
+
+
+
+
+

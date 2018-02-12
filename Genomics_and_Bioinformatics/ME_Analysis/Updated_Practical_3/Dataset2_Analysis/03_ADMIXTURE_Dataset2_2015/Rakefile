@@ -1,0 +1,110 @@
+#!/usr/local/bin/ruby
+
+############################################################
+#        Rakefile for 03_ADMIXTURE_Dataset2_2015           #
+############################################################
+
+SCRIPTS = "scripts"
+RESULTS = "results"
+PLINKIN = "../01_LD_Trim_Dataset2_2015/results/ME_Dataset2_LDpruned_0.1.bed"
+
+FAM = "../01_LD_Trim_Dataset2_2015/results/ME_Dataset2_LDpruned_0.1.fam"
+PREFIX = "ME_Dataset2_LDpruned_0.1"
+POP = "../../Data/ME_popinfo.txt"
+
+CHR = "a" #include all autosomes
+
+
+CV = "#{RESULTS}/Cross_Validation"
+CVMIN = 1
+CVMAX = 8
+K = 2 #value of K chosen after evaluating cross validation results
+
+# directory tasks
+
+directory RESULTS
+
+
+# processing tasks
+
+
+
+
+task :cv => [RESULTS] do
+	sh "for k in $(seq #{CVMIN} #{CVMAX}); do admixture --cv #{PLINKIN} $k | tee log$k.out; done"
+end
+
+PRECLEAN = "#{PREFIX}"
+QFILE = "#{PRECLEAN}.#{CVMAX}.Q"
+PFILE = "#{PRECLEAN}.#{CVMAX}.P"
+
+#directory RESULTS/CV => [RESULTS]
+
+directory CV
+
+
+
+task :cv_clean => [CV, QFILE, PFILE] do
+	sh "grep -h CV log*.out > #{CV}/#{PRECLEAN}.CVerror"
+	sh "for k in $(seq #{CVMIN} #{CVMAX}); do mv #{PRECLEAN}.${k}.Q #{CV}; done"
+	sh "for k in $(seq #{CVMIN} #{CVMAX}); do mv #{PRECLEAN}.${k}.P #{CV}; done"
+	sh "for k in $(seq #{CVMIN} #{CVMAX}); do mv log${k}.out #{CV}; done"
+end 
+
+CVLOG = "#{CV}/log#{CVMAX}.out"
+
+CVERROR = "#{CV}/CV_error"
+
+directory CVERROR
+
+task :cv_error => [CVLOG, CVERROR] do
+	sh "grep -h CV #{CV}/log*.out >CVerror.out"
+	sh "sed s/[\\(\\):kK=]//g CVerror.out >Rtable"
+	sh "awk '{print $3,$4}' Rtable >#{CVERROR}/CVerror.Rtable"
+	sh "rm CVerror.out"
+	sh "rm Rtable"
+	sh "./#{SCRIPTS}/errorPlot.R #{CVERROR}/CVerror.Rtable CVerror.plot.pdf"
+	sh "mv CVerror.plot.pdf #{CVERROR}/"
+	
+
+end
+
+AD_P = "#{RESULTS}/#{PREFIX}.#{K}.P"
+AD_Q = "#{RESULTS}/#{PREFIX}.#{K}.Q"
+AD_BIAS = "#{RESULTS}/#{PREFIX}.#{K}.Q_bias"
+AD_SE = "#{RESULTS}/#{PREFIX}.#{K}.Q_se"
+
+
+task :admix_boot => [RESULTS, CVLOG, CVERROR] do
+	sh "admixture -B #{CLEANDATA} #{K}"
+	sh "mv #{PRECLEAN}.#{K}.P #{AD_P}"
+	sh "mv #{PRECLEAN}.#{K}.Q #{AD_Q}"
+	sh "mv #{PRECLEAN}.#{K}.Q_bias #{AD_BIAS}"
+	sh "mv #{PRECLEAN}.#{K}.Q_se #{AD_SE}"
+end
+
+
+
+RP = "#{CV}/#{PFILE}"
+
+PLOT = "#{RESULTS}/plots"
+
+directory PLOT
+
+
+task :plot => [PLOT, RP] do
+	sh "for k in $(seq #{CVMIN} #{CVMAX}); do ./#{SCRIPTS}/admixture2R.pl #{CV}/#{PRECLEAN}.\$k.Q #{FAM} #{POP} #{PRECLEAN}.\$k.Rtable; done"
+	#sh "for k in $(seq #{CVMIN} #{CVMAX}); do ./#{SCRIPTS}/admixPlot.pl #{PRECLEAN}.$k.Rtable #{PRECLEAN}.$k.plot.pdf; done"
+	sh "for k in $(seq #{CVMIN} #{CVMAX}); do mv #{PRECLEAN}.\$k.Rtable #{PLOT}; done"
+	#sh "for k in $(seq #{CVMIN} #{CVMAX}); do mv #{PRECLEAN}.$k.plot.pdf #{PLOT}; done"
+end
+
+
+#cleaning task
+
+task :clobber => [RESULTS] do
+	sh "rm -r #{RESULTS}"
+end
+
+
+task :default => [:cv, :cv_clean, :cv_error, :plot]

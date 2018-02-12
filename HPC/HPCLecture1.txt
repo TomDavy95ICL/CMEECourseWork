@@ -1,0 +1,50 @@
+On Neutral Theory in Ecology:: (Hubble, 2001)
+	=/= "Null Model"
+	=/= Assuming indifference between species
+	=== Demographic properties of individual are independent of species identity, i.e. birth/death processes, migration
+	=== 
+
+
+Example:
+	Voter Model (Holley & Liggett 1975)
+	
+		> Pick a Random Neighbour
+		> You take their view OR v.v
+		> Keep going for a while; see what happens (in practice)
+			> Fixation
+
+
+[!] Model Rules
+
+	Infinite spatial birth/death neutral model w/ mutation parametre
+
+	|> Variations
+		:: Zero Sum - Death need not preclude birth. =/=d(Outcome), d(Methods).
+		:: Speciation Modes - None, 
+				      Point Mutation, 
+				      Random Fission a la allopatric speciation
+				      Protracted Speciation, over long time
+		
+		:: Spatial Structuring
+					Implicit - Local, Meta community.
+					Spatially explicit network w/ migration, edge effects. i.e. archipelago
+					Fully Spatically explicit - Distribution of dispersal as funciton of distance from origin;
+	Hubble = Zero Sum, Speciation, 
+
+
+Applications:
+	
+	Comprehension & Prediction
+
+		[!] Species abundance distributions - Will be running neutral model of this
+			
+			--> Ricklefs 2003 "Mean species lifetimes are too short"
+			 --> Temporal / Protracted evo model solves this.
+
+	1:1 modelling not appropriate : be selective
+
+MacArthur & Wilson 1967 Theory of Biogeography.
+	Immigration/Extinction model of island species richness
+		Tends to dynamic equilibrium
+		
+

@@ -1,0 +1,24 @@
+A in ss_g_DNA = 1153640
+T in ss_g_DNA = 1152814
+C in ss_g_DNA = 1190880
+G in ss_g_DNA = 1188801
+- - - - - - - - - - - - -			
+Total = 4.686135 Gb
+
+Blast = https://www.ncbi.nlm.nih.gov/nucleotide/169887498?report=genbank&log$=nucltop&blast_rank=1&RID=X79J95GC01R
+
+nt =  2344785 bp. File is missing two nt?
+Yes. Two deletions at Query [626398/626401] compared to  K12 DH10B Genome Acc: CP000948.1
+
+
+Reported nt length w/ "tail -n +2 E.coli.fasta | wc -m" = 4764240tail
+
+
+grep [A,T] = 2306454
+
+Total = 4686135
+
+t.f. G,C = 2379681
+
+
+2306454/2379681=0.96

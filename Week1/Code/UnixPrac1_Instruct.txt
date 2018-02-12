@@ -1,0 +1,5 @@
+1. Count Line Numbers
+2.Print Sequence, Not Fasta Header, for E.Coli Genome
+3. Count E.coli genome length
+4. Count matches of region ATGC
+5. Compute AT/GC Ratio

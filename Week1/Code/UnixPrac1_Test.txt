@@ -1,0 +1,31 @@
+cat -tail E.coli.fasta #Displays Only Genetic Code from Basic Fasta File
+
+
+
+
+tail -n +2 E.coli.fasta #Better Way to Truncate initial line
+wc -l *.fasta # Calls Line Numbers for all Three Fasta Files Independently and Totalled
+#Above methods for subtracting first line show no difference in char counts
+tail -n +2 E.coli.fasta > Genome.txt # Outputs Genetic Sequence into Genome.txt
+wc -m Genome.txt #Counts Characters of Genome.txt, i.e. number of basesin Genome
+tail -n +2 E.coli.fasta | wc -m
+tail -n +2 E.coli.fasta | grep -o ATGC
+tail -n +2 E.coli.fasta | grep -o G | wc #Generic Line to Find number of single nucleotide
+tail -n +2 E.coli.fasta | grep -o '[A-Z]' | wc -l #Alphanumeric search to avoid extra symbols
+tail -n +2 E.coli.fasta | grep -o '[A,T,G,C]' | wc -l #Corrected nt estimation using precision grep
+tail -n +2 E.coli.fasta | grep -o '[A|T]' | wc -l # Differing grep clause for A|T estimation
+tail -n +2 E.coli.fasta | grep -o '[A|T]' | wc -l > AT.tmp #test for tmp file
+myvar=2306454 | expr 2306454 / 4# Testing using float storage of variable as part of downstream calculation
+echo 2306454 / 2379681 # prints ratio numeric values without actually dividing :(
+echo 2306454 / 2379681
+expr 2306454 / 2379681 #Divided, but to 1 s.f.
+echo 2306454 / 2379681 | bc -l #Ratio computing
+2306454 / 2379681 | bc -l #Ratio computing 2
+[$](tail -n +2 ~/CMEECourseWork/Week1/Data/fasta/E.coli.fasta | grep -o '[A|T]' | wc -l) / [$](tail -n +2 ~/CMEECourseWork/Week1/Data/fasta/E.coli.fasta | grep -o '[G|C]' | wc -l) | bc -l #Ratio computing 3
+$(tail -n +2 ~/CMEECourseWork/Week1/Data/fasta/E.coli.fasta | grep -o '[A|T]' | wc -l) / $(tail -n +2 ~/CMEECourseWork/Week1/Data/fasta/E.coli.fasta | grep -o '[G|C]' | wc -l) | bc -l #Ratio computing script. Remove square brackets before usage, as square
+
+
+$(tail -n +2 ~/CMEECourseWork/Week1/Data/fasta/E.coli.fasta | grep -o '[A|T]' | wc -l) / $(tail -n +2 ~/CMEECourseWork/Week1/Data/fasta/E.coli.fasta | grep -o '[G|C]' | wc -l) | bc -l
+
+
+

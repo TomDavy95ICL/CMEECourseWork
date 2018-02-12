@@ -1,0 +1,103 @@
+
+d <- read.table("K5.Qtable", header=TRUE, row.names=1, stringsAsFactors=TRUE)
+
+Afr <- subset(d, d$REG=="Afr", Pop0:Pop4)
+pdf(file="Afr_plot.pdf")
+barplot(t(as.matrix(afr)), col=rainbow(5), xlab="Individual #", ylab="Ancestry", border=NA)
+dev.off()
+
+Yem <- subset(d, d$REG=="Yem", Pop0:Pop4)
+pdf(file="yem_plot.pdf")
+barplot(t(as.matrix(yem)), col=rainbow(5), xlab="Individual #", ylab="Ancestry", border=NA)
+dev.off()
+
+Mea <- subset(d, d$REG=="Mea", Pop0:Pop4)
+pdf(file="MEa_plot.pdf")
+Mea_plot <- barplot(t(as.matrix(mea)), col=rainbow(5), xlab="Individual #", ylab="Ancestry", border=NA)
+dev.off()
+
+Eur <- subset(d, d$REG=="Eur", Pop0:Pop4)
+pdf(file="Eur_plot.pdf")
+Eur_plot <- barplot(t(as.matrix(eur)), col=rainbow(5), xlab="Individual #", ylab="Ancestry", border=NA)
+dev.off()
+
+Asi <- subset(d, d$REG=="Asi", Pop0:Pop4)
+pdf(file="Asi_plot.pdf")
+Asi_plot <- barplot(t(as.matrix(Asi)), col=rainbow(5), xlab="Individual #", ylab="Ancestry", border=NA)
+dev.off()
+
+Oce <- subset(d, d$REG=="Oce", Pop0:Pop4)
+pdf(file="Oce_plot.pdf")
+Oce_plot <- barplot(t(as.matrix(Oce)), col=rainbow(5), xlab="Individual #", ylab="Ancestry", border=NA)
+dev.off()
+
+Amr <- subset(d, d$REG=="Amr", Pop0:Pop4)
+pdf(file="Amr_plot.pdf")
+Ame_plot <- barplot(t(as.matrix(Amr)), col=rainbow(5), xlab="Individual #", ylab="Ancestry", border=NA)
+dev.off()
+
+Nafr <- subset(d, d$REG=="Nafr", Pop0:Pop4)
+pdf(file="Nafr_plot.pdf")
+Nafr_plot <- barplot(t(as.matrix(Nafr)), col=rainbow(5), xlab="Individual #", ylab="Ancestry", border=NA)
+dev.off()
+
+
+
+
+
+
+d <- read.table("K2.Qtable", header=TRUE, row.names=1, stringsAsFactors=TRUE)
+
+Afr <- subset(d, d$REG=="Afr", Pop0:Pop1)
+pdf(file="Afr_plot.pdf")
+barplot(t(as.matrix(afr)), col=rainbow(2), xlab="Individual #", ylab="Ancestry", border=NA)
+dev.off()
+
+Yem <- subset(d, d$REG=="Yem", Pop0:Pop1)
+pdf(file="yem_plot.pdf")
+barplot(t(as.matrix(yem)), col=rainbow(2), xlab="Individual #", ylab="Ancestry", border=NA)
+dev.off()
+
+Mea <- subset(d, d$REG=="Mea", Pop0:Pop1)
+pdf(file="MEa_plot.pdf")
+Mea_plot <- barplot(t(as.matrix(mea)), col=rainbow(2), xlab="Individual #", ylab="Ancestry", border=NA)
+dev.off()
+
+Eur <- subset(d, d$REG=="Eur", Pop0:Pop1)
+pdf(file="Eur_plot.pdf")
+Eur_plot <- barplot(t(as.matrix(eur)), col=rainbow(2), xlab="Individual #", ylab="Ancestry", border=NA)
+dev.off()
+
+Asi <- subset(d, d$REG=="Asi", Pop0:Pop1)
+pdf(file="Asi_plot.pdf")
+Asi_plot <- barplot(t(as.matrix(Asi)), col=rainbow(2), xlab="Individual #", ylab="Ancestry", border=NA)
+dev.off()
+
+Oce <- subset(d, d$REG=="Oce", Pop0:Pop1)
+pdf(file="Oce_plot.pdf")
+Oce_plot <- barplot(t(as.matrix(Oce)), col=rainbow(2), xlab="Individual #", ylab="Ancestry", border=NA)
+dev.off()
+
+Amr <- subset(d, d$REG=="Amr", Pop0:Pop1)
+pdf(file="Amr_plot.pdf")
+Ame_plot <- barplot(t(as.matrix(Amr)), col=rainbow(2), xlab="Individual #", ylab="Ancestry", border=NA)
+dev.off()
+
+Nafr <- subset(d, d$REG=="Nafr", Pop0:Pop1)
+pdf(file="Nafr_plot.pdf")
+Nafr_plot <- barplot(t(as.matrix(Nafr)), col=rainbow(2), xlab="Individual #", ylab="Ancestry", border=NA)
+dev.off()
+
+
+
+dsort <- rbind(Afr, Nafr, Mea, Yem, Eur)
+barplot(t(as.matrix(dsort)), col=rainbow(5), xlab="Individual #", ylab="Ancestry", border=NA)
+
+Asi <- subset(d, d$REG=="Asi", Pop0:Pop1)
+Eur <- subset(d, d$REG=="Eur", Pop0:Pop1)
+Oce <- subset(d, d$REG=="Oce", Pop0:Pop1)
+pdf(file="multipage.pdf")
+Asi_plot <- barplot(t(as.matrix(Asi)), col=rainbow(2), xlab="Individual #", ylab="Ancestry", title="Asia", border=NA)
+Eur_plot <- barplot(t(as.matrix(eur)), col=rainbow(2), xlab="Individual #", ylab="Ancestry", title="Europe", border=NA)
+Oce_plot <- barplot(t(as.matrix(Oce)), col=rainbow(2), xlab="Individual #", ylab="Ancestry", title="Oceanea", border=NA)
+dev.off()

@@ -1,0 +1,10 @@
+*~ 
+*.tmp
+./GIS/GIS_2016/GIS_Practical_2_files/SRTM_UTM50N_slope.tif
+./GIS/GIS_2016/GIS_Practical_2_files/SRTM_UTM50N_aspect.tif
+./GIS/GIS_2016/GIS_Practical_2_files/SRTM_Flow_Direction.tif
+./GIS/GIS_2016/GIS_Practical_2_files/SRTM_Log_Flow_Accum.tif
+./.git/objects/1c/d33cab11c8bad75f5e368e050e266e6ce540ab
+./.git/objects/a2/16d38d878ae1b97f301a5520b218a48df305d7
+*.tif
+*.pdf

@@ -1,0 +1,23 @@
+PLINK v1.90b4.10 64-bit (3 Nov 2017)
+Options in effect:
+  --bfile Data/Dataset1/ME_Dataset1
+  --hardy
+  --out Dataset1_HWE_Analysis
+
+Hostname: tom-Lenovo-Z50-75
+Working directory: /home/tom/CMEECourseWork/Genomics_and_Bioinformatics/ME_Analysis/Updated_Practical_3
+Start time: Thu Nov  9 16:43:14 2017
+
+Random number seed: 1510245794
+6904 MB RAM detected; reserving 3452 MB for main workspace.
+158487 variants loaded from .bim file.
+69 people (0 males, 0 females, 69 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to Dataset1_HWE_Analysis.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 69 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.998587.
+--hardy: Writing Hardy-Weinberg report (founders only) to
+Dataset1_HWE_Analysis.hwe ... done.
+
+End time: Thu Nov  9 16:43:14 2017

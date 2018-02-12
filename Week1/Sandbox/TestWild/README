@@ -1,0 +1,11 @@
+BAM directory - BAM files for El Sidron, Vindija and Altai protein-coding genes (potential deaminations are given a low phred score).
+
+VCF directory - VCF files (per chromosome) for El Sidron, Vindija and Altai protein-coding genes.
+
+CDS directory - FASTA file for the coding sequence (CDS) of the trancripts of each protein-coding gene in El Sidron, Vindija and Altai Neandertals as defined in the primary target (Table S2). Transcripts with a CDS not multiple of three are excluded. Transcripts not tiled and positions not captured are shown with Ns in their CDS sequence. In heterozygous positions, one of the two alleles is chosen at random.
+
+protein directory - FASTA file for the protein sequence of the CDS of the trancripts of each protein-coding gene in El Sidron, Vindija and Altai Neandertals as defined above. Transcripts not tiled and positions not captured are shown with Xs in their protein sequence.
+
+catalog directory - Catalog of amino acid changes in the archaic, Neandertal and modern human lineages.
+
+coordinate directory - BED file for the coordinates of the longest transcript of the protein-coding genes analyzed in El Sidron, Vindija and Altai Neandertals.  
